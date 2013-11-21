@@ -13,8 +13,8 @@
 #    limitations under the License.
 
 Tire.configure do
-  if ENV['BONSAI_URL']
-    url ENV['BONSAI_URL']
+  if Rails.env.production?
+    url 'http://7gwdlgba:t49fs26sr760900m@privet-1427175.us-east-1.bonsai.io/'
   else
     url Shuttle::Configuration.elasticsearch.url
   end
