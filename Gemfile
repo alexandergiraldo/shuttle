@@ -67,12 +67,14 @@ gem 'unicorn'
 
 gem 'autoscaler'
 
+gem 'rails_12factor', group: :production
+
 group :development do
   gem 'redcarpet', require: nil
   gem 'yard', require: nil, platform: :mri
   gem "letter_opener"
   # EXPORTING
-  gem 'libarchive'
+  #gem 'libarchive'
 end
 
 group :production do
