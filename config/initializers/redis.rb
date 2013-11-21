@@ -18,5 +18,8 @@ db = case Rails.env
        when 'development' then 2
        else                    3
      end
-Shuttle::Redis = Redis::Namespace.new(:shuttle, redis: Redis.new(db: db))
+
+uri = URI.parse(ENV["REDISTOGO_URL"])
+
+Shuttle::Redis = Redis::Namespace.new(:shuttle, redis: Redis.new(db: db, :host => uri.host, :port => uri.port, :password => uri.password))
 Redis::Classy.db = Shuttle::Redis
