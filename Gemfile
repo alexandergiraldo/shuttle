@@ -68,6 +68,7 @@ gem 'hogan_assets'
 group :development do
   gem 'redcarpet', require: nil
   gem 'yard', require: nil, platform: :mri
+  gem "letter_opener"
 end
 
 group :test do

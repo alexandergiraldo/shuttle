@@ -45,4 +45,6 @@ Shuttle::Application.configure do
 
   # Add stack traces to SQL logs
   #config.after_initialize { SQLOrigin.append_to_log }
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.default_url_options = { :host => 'localhost.dev' }
 end

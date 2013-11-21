@@ -40,6 +40,7 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
+    addressable (2.3.5)
     ansi (1.4.3)
     arel (4.0.1)
     atomic (1.1.14)
@@ -103,11 +104,15 @@ GEM
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    launchy (2.4.0)
+      addressable (~> 2.3)
     less (2.4.0)
       commonjs (~> 0.2.7)
     less-rails (2.4.2)
       actionpack (>= 3.1)
       less (~> 2.4.0)
+    letter_opener (1.1.2)
+      launchy (~> 2.2)
     libarchive (0.1.2)
     libv8 (3.16.14.3)
     mail (2.5.4)
@@ -273,6 +278,7 @@ DEPENDENCIES
   json
   kaminari
   less-rails
+  letter_opener
   libarchive
   mustache
   nokogiri
