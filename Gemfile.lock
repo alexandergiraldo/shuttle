@@ -44,6 +44,9 @@ GEM
     ansi (1.4.3)
     arel (4.0.1)
     atomic (1.1.14)
+    autoscaler (0.6.0)
+      heroku-api
+      sidekiq (~> 2.7)
     bcrypt-ruby (3.1.2)
     blankslate (2.1.2.4)
     boolean (1.0.1)
@@ -71,6 +74,7 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
     erubis (2.7.0)
+    excon (0.25.3)
     execjs (2.0.2)
     factory_girl (4.3.0)
       activesupport (>= 3.0.0)
@@ -87,6 +91,8 @@ GEM
       boolean
       rails (>= 4.0)
     hashr (0.0.22)
+    heroku-api (0.3.15)
+      excon (~> 0.25.1)
     hike (1.2.3)
     hogan_assets (1.6.0)
       execjs (>= 1.2.9)
@@ -266,6 +272,7 @@ PLATFORMS
 
 DEPENDENCIES
   CFPropertyList
+  autoscaler
   coffee-rails
   coffee-script
   composite_primary_keys!

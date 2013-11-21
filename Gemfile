@@ -68,6 +68,8 @@ gem 'hogan_assets'
 # Server
 gem 'unicorn'
 
+gem 'autoscaler'
+
 group :development do
   gem 'redcarpet', require: nil
   gem 'yard', require: nil, platform: :mri
