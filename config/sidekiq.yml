@@ -1,8 +1,8 @@
 ---
 :verbose: true
 :pidfile: ./tmp/pids/sidekiq.pid
-:concurrency: 12
+:concurrency: 10
 :queues:
-  - [high, 10]
+  - [high, 9]
   - [low, 1]
 :namespace: shuttle
