@@ -65,6 +65,9 @@ gem 'uglifier'
 gem 'less-rails'
 gem 'hogan_assets'
 
+# Server
+gem 'unicorn'
+
 group :development do
   gem 'redcarpet', require: nil
   gem 'yard', require: nil, platform: :mri
