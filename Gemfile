@@ -38,9 +38,6 @@ gem 'parslet'
 gem 'mustache'
 gem 'html_validation'
 
-# EXPORTING
-gem 'libarchive'
-
 # WORD SUBSTITUTION
 gem 'uea-stemmer'
 
@@ -74,6 +71,13 @@ group :development do
   gem 'redcarpet', require: nil
   gem 'yard', require: nil, platform: :mri
   gem "letter_opener"
+  # EXPORTING
+  gem 'libarchive'
+end
+
+group :production do
+  # EXPORTING
+  gem 'libarchive-static'
 end
 
 group :test do
