@@ -1,7 +1,7 @@
 ---
 :verbose: true
 :pidfile: ./tmp/pids/sidekiq.pid
-:concurrency: 10
+:concurrency: 2
 :queues:
   - [high, 9]
   - [low, 1]
