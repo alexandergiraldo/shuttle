@@ -13,7 +13,11 @@
 #    limitations under the License.
 
 Tire.configure do
-  url Shuttle::Configuration.elasticsearch.url
+  if ENV['BONSAI_URL']
+    url ENV['BONSAI_URL']
+  else
+    url Shuttle::Configuration.elasticsearch.url
+  end
 end
 
 Tire::Model::Search.index_prefix "shuttle_#{Rails.env}"
