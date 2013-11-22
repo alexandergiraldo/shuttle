@@ -21,14 +21,10 @@ end
 
 configure_sidekiq = -> do
   Sidekiq.configure_client do |config|
-    config.redis = { :size => 1 }
-    #config.redis = YAML.load_file(Rails.root.join('config', 'sidekiq.yml')).
-    #    merge(url: Shuttle::Redis.client.id, size: 1)
+    config.redis = Rails.env.production? ? { :size => 1 } : YAML.load_file(Rails.root.join('config', 'sidekiq.yml')).merge(url: Shuttle::Redis.client.id)
   end
   Sidekiq.configure_server do |config|
-    config.redis = { :size => 2 }
-    #config.redis = YAML.load_file(Rails.root.join('config', 'sidekiq.yml')).
-    #    merge(url: Shuttle::Redis.client.id, size: 2)
+    config.redis = Rails.env.production? ? { :size => 2 } : config.redis = YAML.load_file(Rails.root.join('config', 'sidekiq.yml')).merge(url: Shuttle::Redis.client.id)
   end
 end
 
