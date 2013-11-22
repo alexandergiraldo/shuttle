@@ -7,9 +7,9 @@ before_fork do |server, worker|
   # Only for staging
   # Running free background jobs on heroku
   # https://coderwall.com/p/fprnhg
-  if Rails.env.production?
-    @sidekiq_pid ||= spawn("bundle exec sidekiq -C ./config/sidekiq.yml")
-  end
+  #if Rails.env.production?
+    #@sidekiq_pid ||= spawn("bundle exec sidekiq -C ./config/sidekiq.yml")
+  #end
 
   Signal.trap 'TERM' do
     puts 'Unicorn master intercepting TERM and sending myself QUIT instead'
