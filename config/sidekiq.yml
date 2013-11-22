@@ -2,6 +2,6 @@
 :verbose: true
 :concurrency: 2
 :queues:
-  - [high, 9]
-  - [low, 1]
-:namespace: shuttle
+  - high
+  - low
+#:namespace: shuttle
