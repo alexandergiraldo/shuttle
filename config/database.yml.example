@@ -1,0 +1,23 @@
+common: &common
+  adapter: postgresql
+  encoding: unicode
+  username: root
+  password: root
+
+development:
+  <<: *common
+  database: shuttle_development
+  pool: 30
+  host: localhost
+
+test:
+  <<: *common
+  database: shuttle_test
+  pool: 10
+  host: localhost
+
+production:
+  <<: *common
+  database: shuttle_production
+  pool: 30
+  host: localhost
