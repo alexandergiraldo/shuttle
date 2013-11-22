@@ -308,6 +308,7 @@ DEPENDENCIES
   rails-observers
   rails_12factor
   redcarpet
+  redis
   redis-mutex
   redis-namespace
   rspec-rails

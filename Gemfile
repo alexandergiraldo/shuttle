@@ -51,6 +51,7 @@ gem 'sinatra', require: nil
 gem 'whenever', require: nil
 
 # REDIS
+gem 'redis'
 gem 'redis-mutex'
 gem 'redis-namespace'
 
