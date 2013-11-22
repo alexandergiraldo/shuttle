@@ -16,7 +16,7 @@ Shuttle::Application.routes.draw do
   # BLOCK DEVISE ROUTES
   get 'users/sign_up', to: redirect('/users/sign_in#sign-up')
   get 'users/password/new', to: redirect('/users/sign_in#forgot-password')
-  
+
   # AUTHENTICATION
   devise_for :users, controllers: {registrations: 'registrations'}
 
@@ -94,19 +94,19 @@ Shuttle::Application.routes.draw do
   get 'reviewers' => 'home#reviewers', as: :reviewers
   root to: 'home#index'
 
-  require 'sidekiq/web'
-  constraint = lambda { |request| request.env['warden'].authenticate? and request.env['warden'].user.monitor? }
-  constraints(constraint) { mount Sidekiq::Web => '/sidekiq' }
-
-  get '/queue_status' => proc {
-    queue_size   = %w(high low).map { |q| Sidekiq::Queue.new(q).size }.inject(:+)
-    queue_status = if queue_size == 0
-                     'idle'
-                   elsif queue_size < 21
-                     'working'
-                   else
-                     'heavy'
-                   end
-    [200, {'Content-Type' => 'text/plain'}, [queue_status]]
-  }
+  #require 'sidekiq/web'
+  #constraint = lambda { |request| request.env['warden'].authenticate? and request.env['warden'].user.monitor? }
+  #constraints(constraint) { mount Sidekiq::Web => '/sidekiq' }
+#
+  #get '/queue_status' => proc {
+  #  queue_size   = %w(high low).map { |q| Sidekiq::Queue.new(q).size }.inject(:+)
+  #  queue_status = if queue_size == 0
+  #                   'idle'
+  #                 elsif queue_size < 21
+  #                   'working'
+  #                 else
+  #                   'heavy'
+  #                 end
+  #  [200, {'Content-Type' => 'text/plain'}, [queue_status]]
+  #}
 end
