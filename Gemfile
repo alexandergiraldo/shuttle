@@ -66,8 +66,6 @@ gem 'hogan_assets'
 # Server
 gem 'unicorn'
 
-gem 'autoscaler'
-
 gem 'rails_12factor', group: :production
 
 group :development do
