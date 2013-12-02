@@ -401,7 +401,7 @@ module Importer
     end
 
     def log_skip(key, reason)
-      Importer::SKIP_LOG.info "commit=#{@commit.try!(:revision)} blob=#{@blob.sha} file=#{file.path} key=#{key} #{reason}"
+      Importer::SKIP_LOG.info "commit=#{@commit.try!(:revision)} blob=#{@blob.sha} file=#{file.path} key=#{key} #{reason}" unless Rails.env.production?
     end
 
     File = Struct.new(:path, :contents, :locale)
