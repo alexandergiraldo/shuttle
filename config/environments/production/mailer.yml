@@ -1,4 +1,4 @@
 ---
 default_url_options:
-  host: your.host.here #TODO input the default host for production
-  protocol: https
+  host: translation-tool.herokuapp.com #TODO input the default host for production
+  protocol: http

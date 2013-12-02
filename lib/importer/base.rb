@@ -429,5 +429,5 @@ module Importer
   end
 
   # A log of skipped files and keys.
-  #SKIP_LOG = ActiveSupport::Logger.new(Rails.root.join('log', "skip-#{Rails.env}.log"))
+  SKIP_LOG = ActiveSupport::Logger.new(Rails.root.join('log', "skip-#{Rails.env}.log")) unless Rails.env.production?
 end
