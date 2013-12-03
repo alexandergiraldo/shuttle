@@ -26,7 +26,7 @@ class CommitMailer < ActionMailer::Base
   def notify_translators(commit)
     @commit = commit
 
-    mail to:      Shuttle::Configuration.mailer.translators_list,
+    mail to:      User.where(role: 'translator').map(&:email).join(';'),
          subject: t('mailer.commit.notify_translators.subject'),
          cc:      @commit.user.try!(:email)
   end
