@@ -170,8 +170,12 @@ namespace :custom_update do
     'zone-label' =>"Zone" }
 
     targets.each do |i, k|
-      puts i.to_s, @project.id.to_s
-      @key = Key.find_from_slug!(i.to_s, @project.id.to_s) rescue next
+      @key = Key.find_from_slug!(i.to_s, @project.id.to_s) rescue nil
+
+      if @key.nil?
+        puts("Not found: #{i.to_s}")
+        next
+      end
 
       @translation = @key.translations.where(rfc5646_locale: 'en').first!
 
