@@ -1,4 +1,4 @@
-# Copyright 2013 Square Inc.
+# Copyright 2014 Square Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -17,8 +17,8 @@ require 'spec_helper'
 describe Fencer::RubyI18n do
   describe ".fence" do
     it "should fence a string with I18n escapes" do
-      Fencer::RubyI18n.fence("String with %{two} %{tokens}.").
-          should eql('%{two}' => [12..17], '%{tokens}' => [19..27])
+      expect(Fencer::RubyI18n.fence("String with %{two} %{tokens}.")).
+          to eql('%{two}' => [12..17], '%{tokens}' => [19..27])
     end
   end
 end

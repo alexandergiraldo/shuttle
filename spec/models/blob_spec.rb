@@ -1,4 +1,4 @@
-# Copyright 2013 Square Inc.
+# Copyright 2014 Square Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -24,8 +24,8 @@ describe Blob do
     it "should call #import on an importer subclass" do
       imp = Importer::Base.implementations
       instance = double(imp.to_s, :skip? => false)
-      imp.should_receive(:new).once.with(@blob, 'some/path', nil).and_return(instance)
-      instance.should_receive(:import).once
+      expect(imp).to receive(:new).once.with(@blob, 'some/path', nil).and_return(instance)
+      expect(instance).to receive(:import).once
       @blob.import_strings imp, 'some/path'
     end
 
@@ -33,8 +33,8 @@ describe Blob do
       commit = FactoryGirl.create(:commit, project: @project)
       imp = Importer::Base.implementations.first
       instance = double(imp.to_s, :skip? => false)
-      imp.should_receive(:new).once.with(@blob, 'some/path', commit).and_return(instance)
-      instance.should_receive(:import).once
+      expect(imp).to receive(:new).once.with(@blob, 'some/path', commit).and_return(instance)
+      expect(instance).to receive(:import).once
       @blob.import_strings imp, 'some/path', commit: commit
     end
   end

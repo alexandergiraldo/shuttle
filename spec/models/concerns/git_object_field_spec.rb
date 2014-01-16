@@ -1,4 +1,4 @@
-# Copyright 2013 Square Inc.
+# Copyright 2014 Square Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -21,14 +21,14 @@ describe GitObjectField do
     blob.skip_sha_check = false
 
     blob.sha = 'f7cdffe98b1fc5b31e66a6f1f1b7404d34c3c73e'
-    blob.should be_valid
+    expect(blob).to be_valid
 
     blob.sha = '16bb6ab08c7f16cacab049fe6c89ca392ef01867'
-    blob.should_not be_valid
-    blob.errors[:sha].should eql(['does not exist in the Git repository'])
+    expect(blob).not_to be_valid
+    expect(blob.errors[:sha]).to eql(['does not exist in the Git repository'])
 
     blob.sha = 'ab3e6137ea47c8e55d9ab9720a3f3a0587ab61e7'
-    blob.should_not be_valid
-    blob.errors[:sha].should eql(['is not the correct Git object type'])
+    expect(blob).not_to be_valid
+    expect(blob.errors[:sha]).to eql(['is not the correct Git object type'])
   end
 end

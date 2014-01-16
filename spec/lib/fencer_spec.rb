@@ -1,4 +1,4 @@
-# Copyright 2013 Square Inc.
+# Copyright 2014 Square Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@ require 'spec_helper'
 describe Fencer do
   describe ".multifence" do
     it "should remove invalid fences overlapped by valid fences" do
-      Fencer.multifence(%w(Erb Html), "<%= 'foo <b' %> b<%=a%>r <%= 'bar >' %>.").should eql(
+      expect(Fencer.multifence(%w(Erb Html), "<%= 'foo <b' %> b<%=a%>r <%= 'bar >' %>.")).to eql(
                                                                                              "<%= 'foo <b' %>" => [0..14],
                                                                                              "<%=a%>"          => [17..22],
                                                                                              "<%= 'bar >' %>"  => [25..38]
@@ -25,7 +25,7 @@ describe Fencer do
     end
 
     it "should remove invalid fences overlapped by multiple valid fences" do
-      Fencer.multifence(%w(Erb Html), "<%= 'foo <b' %> <b bar<b> <%= 'bar >' %>.").should eql(
+      expect(Fencer.multifence(%w(Erb Html), "<%= 'foo <b' %> <b bar<b> <%= 'bar >' %>.")).to eql(
                                                                                               "<%= 'foo <b' %>" => [0..14],
                                                                                               "<%= 'bar >' %>"  => [26..39],
                                                                                               "<b>"             => [22..24]
@@ -33,7 +33,7 @@ describe Fencer do
     end
 
     it "should not fence ranges caught by earlier fences in subsequent fencings" do
-      Fencer.multifence(%w(Erb Html), "<%= 'b<b>old' %>.").should eql(
+      expect(Fencer.multifence(%w(Erb Html), "<%= 'b<b>old' %>.")).to eql(
                                                                       "<%= 'b<b>old' %>" => [0..15]
                                                                   )
     end

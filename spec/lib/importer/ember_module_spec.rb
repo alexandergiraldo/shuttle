@@ -1,4 +1,4 @@
-# Copyright 2013 Square Inc.
+# Copyright 2014 Square Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -26,15 +26,15 @@ describe Importer::EmberModule do
     end
 
     it "should import strings from JS files" do
-      @project.keys.for_key('mod_root_key').first.translations.find_by_rfc5646_locale('en-US').copy.should eql('root')
-      @project.keys.for_key('mod_nested_key.one').first.translations.find_by_rfc5646_locale('en-US').copy.should eql('one')
-      @project.keys.for_key('mod_nested_key.2').first.translations.find_by_rfc5646_locale('en-US').copy.should eql('two')
+      expect(@project.keys.for_key('mod_root_key').first.translations.find_by_rfc5646_locale('en-US').copy).to eql('root')
+      expect(@project.keys.for_key('mod_nested_key.one').first.translations.find_by_rfc5646_locale('en-US').copy).to eql('one')
+      expect(@project.keys.for_key('mod_nested_key.2').first.translations.find_by_rfc5646_locale('en-US').copy).to eql('two')
     end
 
     it "should import strings from CoffeeScript files" do
-      @project.keys.for_key('mod_root_key_coffee').first.translations.find_by_rfc5646_locale('en-US').copy.should eql('root')
-      @project.keys.for_key('mod_nested_key_coffee.one').first.translations.find_by_rfc5646_locale('en-US').copy.should eql('one')
-      @project.keys.for_key('mod_nested_key_coffee.2').first.translations.find_by_rfc5646_locale('en-US').copy.should eql('two')
+      expect(@project.keys.for_key('mod_root_key_coffee').first.translations.find_by_rfc5646_locale('en-US').copy).to eql('root')
+      expect(@project.keys.for_key('mod_nested_key_coffee.one').first.translations.find_by_rfc5646_locale('en-US').copy).to eql('one')
+      expect(@project.keys.for_key('mod_nested_key_coffee.2').first.translations.find_by_rfc5646_locale('en-US').copy).to eql('two')
     end
   end
 
@@ -48,7 +48,7 @@ describe Importer::EmberModule do
                                     skip_imports:        Importer::Base.implementations.map(&:ident) - %w(ember_module))
       @commit  = @project.commit!('HEAD')
 
-      @project.keys.for_key('mod_dot_notation').first.translations.find_by_rfc5646_locale('en').copy.should eql('foo')
+      expect(@project.keys.for_key('mod_dot_notation').first.translations.find_by_rfc5646_locale('en').copy).to eql('foo')
     end
   end
 end

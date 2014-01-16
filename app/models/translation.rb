@@ -1,4 +1,4 @@
-# Copyright 2013 Square Inc.
+# Copyright 2014 Square Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -227,6 +227,17 @@ class Translation < ActiveRecord::Base
 
   def base_translation?
     source_locale == locale
+  end
+
+  # @private
+  def inspect(default_behavior=false)
+    return super() if default_behavior
+    state = case approved
+              when true then 'approved'
+              when false then 'rejected'
+              else translated? ? 'translated' : 'untranslated'
+            end
+    "#<#{self.class.to_s} #{id}: Key #{key_id} in #{rfc5646_locale} (#{state})>"
   end
 
   private

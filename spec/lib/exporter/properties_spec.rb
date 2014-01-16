@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-# Copyright 2013 Square Inc.
+# Copyright 2014 Square Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -67,16 +67,16 @@ describe Exporter::Properties do
     io = StringIO.new
     Exporter::Properties.new(@commit).export(io, @target_locale)
 
-    io.string.should include(<<-EOS)
+    expect(io.string).to include(<<-EOS)
 dialogue.gob[2]=Toll. Jetzt bin ich spät zur Arbeit.
     EOS
-    io.string.should include(<<-EOS)
+    expect(io.string).to include(<<-EOS)
 dialogue.marta[2]=Ich liebe dich.
     EOS
-    io.string.should include(<<-EOS)
+    expect(io.string).to include(<<-EOS)
 dialogue.gob[1]=Deutsch, bitte.
     EOS
-    io.string.should include(<<-EOS)
+    expect(io.string).to include(<<-EOS)
 dialogue.marta[1]=Te Quiero.
     EOS
   end

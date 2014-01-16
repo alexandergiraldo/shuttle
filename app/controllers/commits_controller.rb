@@ -1,4 +1,4 @@
-# Copyright 2013 Square Inc.
+# Copyright 2014 Square Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -147,6 +147,8 @@ class CommitsController < ApplicationController
   def destroy
     @commit.destroy
 
+    Commit.tire.index.refresh
+    
     respond_with(@commit) do |format|
       format.html { redirect_to root_url, notice: t('controllers.commits.destroy.deleted', sha: @commit.revision[0, 6]) }
     end

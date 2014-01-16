@@ -1,4 +1,4 @@
-# Copyright 2013 Square Inc.
+# Copyright 2014 Square Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -12,10 +12,11 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-set :output, '/app/shuttle/shared/log/whenever.log'
+set :output, 'log/whenever.log'
 
 every(30.minutes) { runner 'AutoImporter.perform_once' }
 
 # god damn it why must it come to this
-every(1.hour) { rake 'maintenance:fix_hung_commits' }
-every(1.hour) { rake 'maintenance:clear_stale_lockfiles' }
+every(:hour) { rake 'maintenance:fix_hung_commits' }
+every(:hour) { rake 'maintenance:clear_stale_lockfiles' }
+every(:hour) { rake 'maintenance:recalculate_suspiciously_not_ready_commits' }

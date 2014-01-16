@@ -1,4 +1,4 @@
-# Copyright 2013 Square Inc.
+# Copyright 2014 Square Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -11,6 +11,8 @@
 #    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
+
+require 'ostruct'
 
 Tire.configure do
   if Rails.env.production?
@@ -28,5 +30,5 @@ Tire::Model::Search.index_prefix "shuttle_#{Rails.env}"
 # result's type is representative of the entire result set.
 
 class Tire::Results::Collection
-  def model_name() first.class.model_name end
+  def model_name() first ? first.class.model_name : OpenStruct.new(human: 'Record') end
 end

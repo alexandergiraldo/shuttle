@@ -1,4 +1,4 @@
-# Copyright 2013 Square Inc.
+# Copyright 2014 Square Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -163,6 +163,9 @@ class User < ActiveRecord::Base
     as_json(options || {}).to_json
   end
 
-  private
-
+  # @private
+  def inspect(default_behavior=false)
+    return super() if default_behavior
+    "#<#{self.class.to_s} #{id}: #{email} (#{role})>"
+  end
 end

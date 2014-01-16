@@ -1,4 +1,4 @@
-# Copyright 2013 Square Inc.
+# Copyright 2014 Square Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ require 'digest/sha2'
 # | `due_date`    | The expected date when a glossary entry is due to be translated.       |
 
 class SourceGlossaryEntry < ActiveRecord::Base
-  has_many :locale_glossary_entries, :dependent => :delete_all, inverse_of: :source_glossary_entry
+  has_many :locale_glossary_entries, dependent: :destroy, inverse_of: :source_glossary_entry
 
   include HasMetadataColumn
   has_metadata_column(
@@ -55,9 +55,6 @@ class SourceGlossaryEntry < ActiveRecord::Base
 
   extend SetNilIfBlank
   set_nil_if_blank :context, :notes, :due_date
-
-  extend PrefixField
-  prefix_field :source_copy
 
   validates :source_rfc5646_locale,
             presence: true

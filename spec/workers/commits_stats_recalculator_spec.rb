@@ -1,4 +1,4 @@
-# Copyright 2013 Square Inc.
+# Copyright 2014 Square Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -40,8 +40,8 @@ describe CommitStatsRecalculator do
     Commit.flush_memoizations @commit
     CommitStatsRecalculator.new.perform(@commit.id)
 
-    @commit.reload.translations_total.should eql(4)
-    @commit.translations_done.should eql(2)
-    @commit.strings_total.should eql(2)
+    expect(@commit.reload.translations_total).to eql(4)
+    expect(@commit.translations_done).to eql(2)
+    expect(@commit.strings_total).to eql(2)
   end
 end

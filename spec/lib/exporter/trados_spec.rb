@@ -1,4 +1,4 @@
-# Copyright 2013 Square Inc.
+# Copyright 2014 Square Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -87,7 +87,7 @@ describe Exporter::Trados do
       strio    = StringIO.new
       exporter.export(strio, @de)
 
-      strio.string.should eql(<<-XML)
+      expect(strio.string).to eql(<<-XML)
 <TWBExportFile version="7.0" generator="TW4Win" build="8.3.0.863">
 <RTF Preamble>
 <FontTable>
@@ -124,7 +124,7 @@ describe Exporter::Trados do
       strio    = StringIO.new
       exporter.export(strio, @de)
 
-      strio.string.should eql(<<-XML)
+      expect(strio.string).to eql(<<-XML)
 <TWBExportFile version="7.0" generator="TW4Win" build="8.3.0.863">
 <RTF Preamble>
 <FontTable>
@@ -161,7 +161,7 @@ describe Exporter::Trados do
       strio    = StringIO.new
       exporter.export(strio, @de)
 
-      strio.string.should eql(<<-XML)
+      expect(strio.string).to eql(<<-XML)
 <TWBExportFile version="7.0" generator="TW4Win" build="8.3.0.863">
 <RTF Preamble>
 <FontTable>
@@ -198,7 +198,7 @@ describe Exporter::Trados do
       strio    = StringIO.new
       exporter.export(strio, @de)
 
-      strio.string.should eql(<<-XML)
+      expect(strio.string).to eql(<<-XML)
 <TWBExportFile version="7.0" generator="TW4Win" build="8.3.0.863">
 <RTF Preamble>
 <FontTable>

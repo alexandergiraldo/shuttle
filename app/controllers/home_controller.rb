@@ -1,4 +1,4 @@
-# Copyright 2013 Square Inc.
+# Copyright 2014 Square Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -55,7 +55,6 @@ class HomeController < ApplicationController
     exported = params[:exported] == 'true'
 
     # Filter by project
-    params[:project_id] ||= 'my-locales' if current_user.approved_locales.any?
     projects = if params[:project_id] == 'my-locales'
                  Project.scoped.to_a.select do |project|
                    (project.targeted_locales & current_user.approved_locales).any?

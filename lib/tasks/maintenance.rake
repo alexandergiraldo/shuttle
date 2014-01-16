@@ -1,4 +1,4 @@
-# Copyright 2013 Square Inc.
+# Copyright 2014 Square Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -38,6 +38,22 @@ namespace :maintenance do
 
       # if we're still here, the worker has terminated and left the lockfile hanging around
       FileUtils.rm_f lockfile
+    end
+  end
+
+  desc "Locates un-ready commits that probably should be ready and recalculates their stats"
+  task recalculate_suspiciously_not_ready_commits: :environment do
+    start_time = Time.now
+    # if the commit isn't ready...
+    Commit.where(loading: false, ready: false).order('id DESC').find_each do |c|
+      # ... but it probably should be ready ...
+      if c.translations_done == c.translations_total
+        # don't spend more than half an hour doing this so we don't get cron jobs stacking up
+        if Time.now - start_time <= 30.minutes
+          # recalculate the commit inline
+          CommitStatsRecalculator.new.perform(c.id)
+        end
+      end
     end
   end
 end

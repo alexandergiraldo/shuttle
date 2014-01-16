@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-# Copyright 2013 Square Inc.
+# Copyright 2014 Square Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -66,7 +66,7 @@ describe Exporter::Ruby do
   it "should output translations in Ruby format" do
     io = StringIO.new
     Exporter::Ruby.new(@commit).export(io, @target_locale)
-    io.string.should eql(<<-RUBY)
+    expect(io.string).to eql(<<-RUBY)
 {"de-DE"=>
   {"dialogue"=>
     {"gob"=>[nil, "Deutsch, bitte.", "Toll. Jetzt bin ich spät zur Arbeit."],
@@ -96,7 +96,7 @@ describe Exporter::Ruby do
                          copy:          "異なる"
       io = StringIO.new
       Exporter::Ruby.new(@commit).export(io, ja)
-      io.string.should eql(<<-RUBY)
+      expect(io.string).to eql(<<-RUBY)
 {"ja"=>{"different"=>"異なる", "same"=>"Same"}}
       RUBY
     end
@@ -137,7 +137,7 @@ describe Exporter::Ruby do
 
       io = StringIO.new
       Exporter::Ruby.new(@commit).export(io, ja_JP)
-      io.string.should eql(<<-RUBY)
+      expect(io.string).to eql(<<-RUBY)
 {"ja-JP"=>{"different"=>"Different (ja-JP)"}}
       RUBY
     end
@@ -178,7 +178,7 @@ describe Exporter::Ruby do
 
       io = StringIO.new
       Exporter::Ruby.new(@commit).export(io, ja_JP)
-      io.string.should eql(<<-RUBY)
+      expect(io.string).to eql(<<-RUBY)
 {"ja-JP"=>{"different"=>"Different (ja-JP)", "same"=>"Same (ja)"}}
       RUBY
     end

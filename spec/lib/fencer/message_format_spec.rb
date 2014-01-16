@@ -1,4 +1,4 @@
-# Copyright 2013 Square Inc.
+# Copyright 2014 Square Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -36,13 +36,13 @@ describe Fencer::MessageFormat do
 
   describe ".valid?" do
     it "should return true for a string with valid interpolations" do
-      Fencer::MessageFormat.valid?("String with {0} valid {1,number} tokens.").should be_true
+      expect(Fencer::MessageFormat.valid?("String with {0} valid {1,number} tokens.")).to be_true
     end
 
     it "should return false for a string with invalid interpolations" do
-      Fencer::MessageFormat.valid?("String with {foo}.").should be_false
-      Fencer::MessageFormat.valid?("String with {0,foo}.").should be_false
-      Fencer::MessageFormat.valid?("String with {0.").should be_false
+      expect(Fencer::MessageFormat.valid?("String with {foo}.")).to be_false
+      expect(Fencer::MessageFormat.valid?("String with {0,foo}.")).to be_false
+      expect(Fencer::MessageFormat.valid?("String with {0.")).to be_false
     end
   end
 end

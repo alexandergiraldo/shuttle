@@ -1,4 +1,4 @@
-# Copyright 2013 Square Inc.
+# Copyright 2014 Square Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -33,6 +33,10 @@ class Glossary::SourceGlossaryEntriesController < ApplicationController
 
   def index
     @entries = SourceGlossaryEntry.order('source_copy_prefix ASC').eager_load(:locale_glossary_entries)
+    @entries = SourceGlossaryEntry.search(load: {include: :locale_glossary_entries}) do
+      sort { by :source_copy, 'asc' }
+      size 10_000
+    end
     respond_with @entries do |format|
       format.json { render json: decorate(@entries).to_json }
     end

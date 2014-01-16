@@ -1,4 +1,4 @@
-# Copyright 2013 Square Inc.
+# Copyright 2014 Square Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -25,11 +25,11 @@ if Rails.env.development?
   YARD::Rake::YardocTask.new do |doc|
     doc.options << '-m' << 'markdown' << '-M' << 'redcarpet'
     doc.options << '--protected' << '--no-private'
-    doc.options << '-r' << 'doc/README_FOR_APP.md'
+    doc.options << '-r' << 'README.md'
     doc.options << '-o' << 'doc/app'
     doc.options << '--title' << "Shuttle Documentation"
 
-    doc.files = %w( app/**/*.rb lib/**/*.rb doc/README_FOR_APP.md )
+    doc.files = %w( app/**/*.rb lib/**/*.rb README.md )
   end
 end
 

@@ -1,4 +1,4 @@
-# Copyright 2013 Square Inc.
+# Copyright 2014 Square Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -24,12 +24,12 @@ describe WebhookPinger do
       url = "http://www.example.com"
       @commit.project.webhook_url = url
       @commit.project.save!
-      HTTParty.should_receive(:post).with(url, anything())
+      expect(HTTParty).to receive(:post).with(url, anything())
       subject.perform(@commit.id)
     end
     it "doesnt send anything if no webhook_url is defined on the project" do
-      @commit.project.webhook_url.should be_blank
-      HTTParty.should_not_receive(:post)
+      expect(@commit.project.webhook_url).to be_blank
+      expect(HTTParty).not_to receive(:post)
       subject.perform(@commit.id)
     end
   end

@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-# Copyright 2013 Square Inc.
+# Copyright 2014 Square Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -79,8 +79,8 @@ describe Localizer::Android do
 
     Localizer::Android.new(@project, @commit.translations).localize input_file, output_file, @de
 
-    output_file.path.should eql('java/basic-de-rDE-hdpi/strings.xml')
-    output_file.content.should eql(<<-XML)
+    expect(output_file.path).to eql('java/basic-de-rDE-hdpi/strings.xml')
+    expect(output_file.content).to eql(<<-XML)
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="string">Hallo!</string>

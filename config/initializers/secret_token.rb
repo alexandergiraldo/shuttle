@@ -1,4 +1,4 @@
-# Copyright 2013 Square Inc.
+# Copyright 2014 Square Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -23,4 +23,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Shuttle::Application.config.secret_key_base = 'YOUR_TOKEN:994835e8731f1e95f5e1586cb81f7c40'
+Shuttle::Application.config.secret_key_base = 'YOUR_TOKEN:994835e8731f1e95f5e1586cb81f7c40' #TODO

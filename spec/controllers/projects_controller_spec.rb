@@ -1,4 +1,4 @@
-# Copyright 2013 Square Inc.
+# Copyright 2014 Square Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -34,9 +34,9 @@ describe ProjectsController do
     end
 
     it "should return 200 and create a github commit for the current user" do
-      response.status.should eql(200)
-      @project.commits.first.user.should eql(@user)
-      @project.commits.first.description.should eql('github webhook')
+      expect(response.status).to eql(200)
+      expect(@project.commits.first.user).to eql(@user)
+      expect(@project.commits.first.description).to eql('github webhook')
     end
   end
 end

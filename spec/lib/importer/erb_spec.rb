@@ -1,4 +1,4 @@
-# Copyright 2013 Square Inc.
+# Copyright 2014 Square Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -27,14 +27,14 @@ describe Importer::Erb do
 
     it "should import one big string from an ERb file" do
       file = @project.repo.object('HEAD^{tree}:ruby/example.en-US.text.erb').contents
-      @project.keys.for_key('/ruby/example.text.erb').first.translations.find_by_rfc5646_locale('en-US').copy.should eql(file)
+      expect(@project.keys.for_key('/ruby/example.text.erb').first.translations.find_by_rfc5646_locale('en-US').copy).to eql(file)
     end
 
     it "should fence HTML tags in HTML ERB files" do
       file        = @project.repo.object('HEAD^{tree}:ruby/example.en-US.html.erb').contents
       translation = @project.keys.for_key('/ruby/example.html.erb').first.translations.find_by_rfc5646_locale('en-US')
-      translation.copy.should eql(file)
-      translation.fences.should eql(
+      expect(translation.copy).to eql(file)
+      expect(translation.fences).to eql(
                                     '<%= something %>' => [22..37],
                                     '<b>'              => [5..7],
                                     '</b>'             => [12..15]
