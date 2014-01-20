@@ -52,7 +52,7 @@ table.table.stats-table
     #project_commit_time_chart_0
       svg
   .eight.columns
-    div: h3 = @top_projects[1][:name]
+    div: h3 = @top_projects[1][:name] if @top_projects[1].present?
     #project_commit_time_chart_1
       svg
 - if @top_projects.length > 2
