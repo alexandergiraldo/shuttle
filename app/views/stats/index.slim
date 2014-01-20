@@ -65,7 +65,7 @@ table.table.stats-table
       div: h3 = @top_projects.sample[:name]
       #project_commit_time_chart_3
         svg
-= select_tag 'project', options_for_select(Project.all.map {|p| [p.name, p.id]}, @top_projects.sample[:id])
+= select_tag 'project', options_for_select(Project.all.map {|p| [p.name, p.id]}), prompt: 'Select a Project'
 .row.stats-charts
   .sixteen.columns
     #project_commit_time_chart_4
