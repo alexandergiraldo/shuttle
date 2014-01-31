@@ -25,10 +25,11 @@ class CommitMailer < ActionMailer::Base
 
   def notify_translators(commit)
     @commit = commit
+    cc_emails = User.where(role: 'admin').map(&:email) << @commit.user.try!(:email)
 
     mail to:      User.where(role: 'translator').map(&:email).join(';'),
          subject: t('mailer.commit.notify_translators.subject'),
-         cc:      @commit.user.try!(:email)
+         cc:      cc_emails.uniq
   end
 
   # Notifies the user who submitted the Commit that the translators have
