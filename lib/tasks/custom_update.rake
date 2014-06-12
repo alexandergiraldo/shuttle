@@ -1,4 +1,12 @@
 namespace :custom_update do
+
+  desc "Copy spanish translations to english translations"
+  task import_translations: :environment do
+    exit if ENV['SOURCE_COMMIT'].blank?
+    importer = TranslationsImporter.new(ENV['SOURCE_COMMIT'],ENV['TARGET_COMMIT'])
+    importer.process
+  end
+
   desc "Testing"
   task update_pxd_project: :environment do
     current_user = User.find_by_email Rails.env.production? ? 'alexgr200@gmail.com' : 'admin@example.com'
