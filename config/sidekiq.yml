@@ -1,6 +1,6 @@
 ---
 :verbose: true
-:concurrency: 2
+:concurrency: 3
 :queues:
   - high
   - low
